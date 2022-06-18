@@ -7,6 +7,10 @@ const ApiFeatures = require("../utils/apifeatures");
 //create Product --- admin
 exports.createProduct = catchAsyncErrors(
     async (req, res, next) => {
+        // hamle jaba product create hunxa taba kasle create gayeko ho tesko id
+        // req.body.user maa rakhlyeko yo line of code thru
+        //not by body jasma user le front bata value send garytheyo
+        req.body.user = req.user.id;
 
         const product = await Product.create(req.body)
 
