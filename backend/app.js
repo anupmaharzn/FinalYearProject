@@ -20,9 +20,11 @@ app.use(cookieParser());
 //Route imports
 const product = require('./routes/productRoute');
 const user = require('./routes/userRoute');
+const order = require('./routes/orderRoute,js')
 
 app.use(`${api}`, product);
 app.use(`${api}`, user);
+app.use(`${api}`, order);
 
 //position matters sadly ducking top down approach
 //middleware for error
