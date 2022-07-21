@@ -24,8 +24,9 @@ exports.createProduct = catchAsyncErrors(
 //Get all products
 exports.getAllProducts = catchAsyncErrors(async (req, res) => {
 
+
     //product per page for paginaiton 
-    const resultPerPage = 10;
+    const resultPerPage = 8;
 
     //for dashboard frontend
     const productCount = await Product.countDocuments();
