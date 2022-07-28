@@ -2,10 +2,10 @@ import React, { useEffect } from "react";
 import './home.scss';
 import ProductSlider from "./ProductSlider/ProductSlider";
 import sliderimg from '../../assets/images/shoe1.png';
-import Product from './product/Product';
+import ProductCard from './product/ProductCard';
 import Metadata from '../layout/Metadata';
 import { useSelector, useDispatch } from 'react-redux';
-import { getProduct } from '../../redux/actions/productAction';
+import { clearErrors, getProduct } from '../../redux/actions/productAction';
 import flashicon from '../../assets/images/flash1.png'
 import Loader from '../layout/Loader/loader';
 import { useAlert } from 'react-alert'
@@ -31,7 +31,8 @@ const Home = () => {
     const { loading, error, products, productsCount } = useSelector((state) => state.products)
     useEffect(() => {
         if (error) {
-            return alert.error(error)
+            alert.error(error);
+            dispatch(clearErrors());
         }
         dispatch(getProduct())
     }, [dispatch, error, alert]);
@@ -50,7 +51,7 @@ const Home = () => {
                     </div>
                     <div className="productsection__container">
                         {products && products.map((product) =>
-                            <Product product={product} />
+                            <ProductCard product={product} />
                         )}
                     </div>
                 </div>

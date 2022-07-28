@@ -4,7 +4,7 @@ import Header from "./components/layout/Header/Header";
 import TopHeader from "./components/layout/TopHeader/TopHeader";
 import Footer from './components/layout/Footer/Footer';
 import Home from './components/Home/Home';
-
+import ScrollToTop from './components/utils/ScrollToTop';
 import './scss/main.scss';
 import ProductDetails from "./components/Product/ProductDetails";
 
@@ -12,6 +12,7 @@ function App() {
   return (
 
     <Router>
+      <ScrollToTop />
       <TopHeader />
       <Header />
       <Routes>
