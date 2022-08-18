@@ -1,7 +1,7 @@
 const express = require('express');
+// const cors = require('cors');
 
 const app = express();
-
 const cookieParser = require('cookie-parser');
 
 const errorMiddleware = require('./middleware/error');
@@ -13,6 +13,10 @@ const api = process.env.API_URL;
 
 
 //middleware
+//cross origin resource sharing
+// app.use(cors({
+//     origin: "*",
+// }));
 app.use(express.json());
 app.use(cookieParser());
 

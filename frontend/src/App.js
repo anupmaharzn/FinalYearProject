@@ -7,7 +7,7 @@ import Home from './components/Home/Home';
 import ScrollToTop from './components/utils/ScrollToTop';
 import './scss/main.scss';
 import ProductDetails from "./components/Product/ProductDetails";
-
+import Products from './components/Products/Products.js';
 function App() {
   return (
 
@@ -18,6 +18,8 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route exact path="/product/:id" element={<ProductDetails />} />
+        <Route exact path="/products" element={<Products />} />
+        <Route path="/products/:keyword" element={<Products />} />
       </Routes>
       <Footer />
     </Router>

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import './home.scss';
 import ProductSlider from "./ProductSlider/ProductSlider";
 import sliderimg from '../../assets/images/shoe1.png';
-import ProductCard from './product/ProductCard';
+import ProductCard from '../Home/productcard/ProductCard';
 import Metadata from '../layout/Metadata';
 import { useSelector, useDispatch } from 'react-redux';
 import { clearErrors, getProduct } from '../../redux/actions/productAction';
@@ -28,6 +28,7 @@ const productslider = [
 const Home = () => {
     const alert = useAlert();
     const dispatch = useDispatch();
+    // eslint-disable-next-line
     const { loading, error, products, productsCount } = useSelector((state) => state.products)
     useEffect(() => {
         if (error) {
@@ -50,8 +51,8 @@ const Home = () => {
                         <h1 className='productsection__title__text'>Flash Products</h1>
                     </div>
                     <div className="productsection__container">
-                        {products && products.map((product) =>
-                            <ProductCard product={product} />
+                        {products && products.map((product, index) =>
+                            <ProductCard key={index} product={product} />
                         )}
                     </div>
                 </div>

@@ -2,14 +2,16 @@ import axios from 'axios';
 import * as productactionTypes from '../constants/productactiontypes';
 
 
-export const getProduct = () => async (dispatch) => {
+export const getProduct = (keyword = "", currentPage) => async (dispatch) => {
 
     try {
         dispatch({
             type: productactionTypes.ALL_PRODUCT_REQUEST
         });
 
-        const { data } = await axios.get("/api/v1/products");
+        // let link = `/api/v1/products/?keyword=${keyword}&page=${currentPage}`;
+
+        const { data } = await axios.get(`/api/v1/products/?keyword=${keyword}&page=${currentPage}`);
 
         dispatch({
             type: productactionTypes.ALL_PRODUCT_SUCCESS,

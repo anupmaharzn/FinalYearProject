@@ -27,7 +27,7 @@ const ProductDetails = () => {
         dispatch(getProductDetails(id));
     }, [dispatch, id, error, alert]);
 
-    const options = {
+    const options = { 
         edit: false,
         color: 'rgba(20,20,20,0.1)',
         activeColor: "#ffd700",

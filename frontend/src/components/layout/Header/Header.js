@@ -4,9 +4,10 @@ import './header.scss';
 import logo from '../../../assets/images/logo3.png';
 import loginicon from '../../../assets/images/icon-person.png';
 import carticon from '../../../assets/images/icon-shopping.png';
-import searchicon from '../../../assets/images/search-icon.png'
-
+import { NavLink } from 'react-router-dom';
+import Search from '../../Search/Search';
 const Header = () => {
+
 
     const [Header, setHeader] = useState(false);
 
@@ -24,19 +25,13 @@ const Header = () => {
         <header className={Header ? `header scroll-header` : `header`}>
             <nav className="nav ">
                 <a href="/#" className="nav__logo"><img alt="logo" src={logo} /></a>
-
-                <div className="nav__searchbar">
-                    <span className="searchicon"><img alt="iconimg" className="iconimg" src={searchicon}></img></span>
-                    <input className="searchfield" type="text" placeholder="Searching for ..."></input>
-
-                </div>
+                < Search />
                 <div className="nav__menu">
                     <ul className="nav__menu__list">
-                        <li className="nav__items"><a href="/#">Home</a></li>
-                        <li className="nav__items"><a href="/#">Products</a></li>
+                        <NavLink exact="true" className="nav__items" to='/' activeclassname="active" >Home</NavLink>
+                        <NavLink exact="true" className="nav__items" to='/products' activeclassname="active">Products</NavLink>
                     </ul>
                 </div>
-
                 <div className="nav__icons">
                     <button type="button" className="icon__btn">
                         <img className="iconimg" alt="iconimg" src={loginicon}></img>
