@@ -28,8 +28,7 @@ const productslider = [
 const Home = () => {
     const alert = useAlert();
     const dispatch = useDispatch();
-    // eslint-disable-next-line
-    const { loading, error, products, productsCount } = useSelector((state) => state.products)
+    const { loading, error, products } = useSelector((state) => state.products)
     useEffect(() => {
         if (error) {
             alert.error(error);

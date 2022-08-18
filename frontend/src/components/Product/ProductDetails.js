@@ -10,6 +10,7 @@ import 'react-tabs/style/react-tabs.css';
 import Loader from '../layout/Loader/loader';
 import { useAlert } from 'react-alert';
 import ReviewCard from './ReviewCard';
+import MetaData from '../layout/Metadata';
 const ProductDetails = () => {
     //for accessing params //older way causing error
     const { id } = useParams();
@@ -27,7 +28,7 @@ const ProductDetails = () => {
         dispatch(getProductDetails(id));
     }, [dispatch, id, error, alert]);
 
-    const options = { 
+    const options = {
         edit: false,
         color: 'rgba(20,20,20,0.1)',
         activeColor: "#ffd700",
@@ -39,6 +40,7 @@ const ProductDetails = () => {
         <React.Fragment>
             {loading ? (<Loader />) : (
                 <React.Fragment>
+                    <MetaData title={`${product.name} -- EKINBECH`} />
                     <div className='productdetails'>
                         <div className="productdetails__container">
                             <div className="productdetails__imgCarousel">

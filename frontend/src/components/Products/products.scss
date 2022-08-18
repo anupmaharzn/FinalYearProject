@@ -6,6 +6,7 @@
   margin-right: 5rem;
   overflow: hidden;
 
+
   &__title {
     margin: 2vmax auto;
     width: 15rem;
@@ -80,10 +81,45 @@
   color: white;
 }
 
+//filteration section
 
-// .filterbox {
-//   width: 14vmax;
-//   position: absolute;
-//   top: 17rem;
-//   left: 3.5rem;
-// }
+.filterbox {
+  width: 14vmax;
+  position: absolute;
+  top: 20rem;
+  left: 3.5rem;
+
+  .MuiTypography-body1 {
+    font-size: 1.1rem;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #0f3461;
+    letter-spacing: 0.00938em;
+  }
+
+  .categorybox {
+    padding: 0;
+
+  }
+
+  .category-link {
+    list-style: none;
+    color: rgba(0, 0, 0, 0.5);
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    margin: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s;
+
+    &:hover {
+      color: #0f3461;
+    }
+  }
+
+  fieldset {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    width: 11rem;
+    padding: 0 1rem;
+  }
+}
