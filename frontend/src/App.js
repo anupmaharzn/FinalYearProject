@@ -8,6 +8,7 @@ import ScrollToTop from './components/utils/ScrollToTop';
 import './scss/main.scss';
 import ProductDetails from "./components/Product/ProductDetails";
 import Products from './components/Products/Products.js';
+import LoginSignUp from "./components/user/LoginSignUp";
 function App() {
   return (
 
@@ -20,6 +21,7 @@ function App() {
         <Route exact path="/product/:id" element={<ProductDetails />} />
         <Route exact path="/products" element={<Products />} />
         <Route path="/products/:keyword" element={<Products />} />
+        <Route exact path='/login' element={<LoginSignUp />} />
       </Routes>
       <Footer />
     </Router>

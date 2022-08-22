@@ -24,7 +24,7 @@ const Header = () => {
     return (
         <header className={Header ? `header scroll-header` : `header`}>
             <nav className="nav ">
-                <a href="/#" className="nav__logo"><img alt="logo" src={logo} /></a>
+                <NavLink to="/" className="nav__logo"><img alt="logo" src={logo} /></NavLink>
                 < Search />
                 <div className="nav__menu">
                     <ul className="nav__menu__list">
@@ -33,12 +33,18 @@ const Header = () => {
                     </ul>
                 </div>
                 <div className="nav__icons">
-                    <button type="button" className="icon__btn">
-                        <img className="iconimg" alt="iconimg" src={loginicon}></img>
-                    </button>
-                    <button type="button" className="icon__btn">
-                        <img className="iconimg" alt="iconimg" src={carticon}></img>
-                    </button>
+                    <NavLink to='/' className="icon__btn">
+                        <span>
+                            <img className="iconimg" alt="iconimg" src={carticon}></img>
+                        </span>
+
+                    </NavLink>
+                    <NavLink to='/login' className="icon__btn">
+                        <span>
+                            <img className="iconimg" alt="iconimg" src={loginicon}></img>
+                        </span>
+                    </NavLink>
+
                 </div>
 
             </nav>

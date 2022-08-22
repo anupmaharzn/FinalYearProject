@@ -3,6 +3,9 @@ const express = require('express');
 
 const app = express();
 const cookieParser = require('cookie-parser');
+const bodyParser = require("body-parser");
+
+const fileUpload = require("express-fileupload");
 
 const errorMiddleware = require('./middleware/error');
 
@@ -13,18 +16,21 @@ const api = process.env.API_URL;
 
 
 //middleware
+
 //cross origin resource sharing
 // app.use(cors({
 //     origin: "*",
 // }));
 app.use(express.json());
 app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(fileUpload());
 
 
 //Route imports
 const product = require('./routes/productRoute');
 const user = require('./routes/userRoute');
-const order = require('./routes/orderRoute,js')
+const order = require('./routes/orderRoute');
 
 app.use(`${api}`, product);
 app.use(`${api}`, user);

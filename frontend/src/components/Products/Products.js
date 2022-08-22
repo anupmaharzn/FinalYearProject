@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 import React, { useEffect, useState } from 'react';
 import './products.scss';
 import { useSelector, useDispatch } from 'react-redux';
@@ -10,6 +11,7 @@ import Slider from '@material-ui/core/Slider';
 import Typography from '@material-ui/core/Typography';
 import { useAlert } from 'react-alert';
 import MetaData from '../layout/Metadata';
+//import 'boxicons/dist/boxicons';
 const categories = [
   "Laptop",
   "Footwear",
@@ -67,6 +69,13 @@ const Products = () => {
           </div>
 
           <div className='filterbox'>
+            <div className='filtertitle'>
+              <h3 className='filtertitle__text'>FILTERS</h3>
+
+              <box-icon name='filter' color='#ff2727' ></box-icon>
+
+            </div>
+
             <Typography>Price</Typography>
             <Slider
               value={price}
