@@ -9,7 +9,17 @@ import './scss/main.scss';
 import ProductDetails from "./components/Product/ProductDetails";
 import Products from './components/Products/Products.js';
 import LoginSignUp from "./components/user/LoginSignUp";
+import store from '../src/redux/store';
+import { loadUser } from "./redux/actions/userAction";
+
+
 function App() {
+  //given when we reload we dont lose logined user data
+  //render once after initial render
+  React.useEffect(() => {
+    store.dispatch(loadUser());
+  }, []);
+
   return (
 
     <Router>

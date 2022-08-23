@@ -6,9 +6,12 @@ import loginicon from '../../../assets/images/icon-person.png';
 import carticon from '../../../assets/images/icon-shopping.png';
 import { NavLink } from 'react-router-dom';
 import Search from '../../Search/Search';
+import UserOptions from "./useroption/UserOptions";
+import { useSelector } from 'react-redux';
+
 const Header = () => {
 
-
+    const { isAuthenticated, user } = useSelector((state) => state.user);
     const [Header, setHeader] = useState(false);
 
     const handleHeader = () => {
@@ -29,7 +32,7 @@ const Header = () => {
                 <div className="nav__menu">
                     <ul className="nav__menu__list">
                         <NavLink exact="true" className="nav__items" to='/' activeclassname="active" >Home</NavLink>
-                        <NavLink exact="true" className="nav__items" to='/products' activeclassname="active">Products</NavLink>
+                        <NavLink exact="true" className="nav__items" to='/products' activeclassname="active">All Products</NavLink>
                     </ul>
                 </div>
                 <div className="nav__icons">
@@ -39,12 +42,14 @@ const Header = () => {
                         </span>
 
                     </NavLink>
-                    <NavLink to='/login' className="icon__btn">
-                        <span>
-                            <img className="iconimg" alt="iconimg" src={loginicon}></img>
-                        </span>
-                    </NavLink>
+                    {isAuthenticated ?
+                        <div> {isAuthenticated && <UserOptions user={user} />}</div> :
+                        <NavLink to='/login' className="icon__btn">
+                            <span>
+                                <img className="iconimg" alt="iconimg" src={loginicon}></img>
+                            </span>
 
+                        </NavLink>}
                 </div>
 
             </nav>

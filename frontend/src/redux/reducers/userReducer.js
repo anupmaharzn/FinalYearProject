@@ -4,12 +4,15 @@ export const userReducer = (state = { user: {} }, action) => {
     switch (action.type) {
         case userActionTypes.LOGIN_REQUEST:
         case userActionTypes.REGISTER_USER_REQUEST:
+        case userActionTypes.LOAD_USER_REQUEST:
             return {
                 loading: true,
                 isAuthenticated: false,
             };
+
         case userActionTypes.LOGIN_SUCCESS:
         case userActionTypes.REGISTER_USER_SUCCESS:
+        case userActionTypes.LOAD_USER_SUCCESS:
             return {
                 ...state,
                 loading: false,
@@ -17,15 +20,37 @@ export const userReducer = (state = { user: {} }, action) => {
                 user: action.payload,
             };
 
+        case userActionTypes.LOGOUT_SUCCESS:
+            return {
+                loading: false,
+                user: null,
+                isAuthenticated: false,
+            };
+
         case userActionTypes.LOGIN_FAIL:
         case userActionTypes.REGISTER_USER_FAIL:
             return {
                 ...state,
+                loading: false,
                 isAuthenticated: false,
                 user: null,
                 error: action.payload
+            };
+
+        case userActionTypes.LOAD_USER_FAIL:
+            return {
+                loading: false,
+                isAuthenticated: false,
+                user: null,
+                error: action.payload
+            };
+        case userActionTypes.LOGOUT_FAIL:
+            return {
+                ...state,
+                loading: false,
+                error: action.payload,
             }
-                ;
+
         case userActionTypes.CLEAR_ERRORS:
             return {
                 ...state,

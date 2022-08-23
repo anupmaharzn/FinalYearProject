@@ -1,7 +1,7 @@
 import axios from 'axios';
 import * as userActionTypes from '../constants/userActionTypes';
 
-
+//login
 export const login = (email, password) => async (disptach) => {
     try {
         disptach({ type: userActionTypes.LOGIN_REQUEST });
@@ -26,7 +26,7 @@ export const login = (email, password) => async (disptach) => {
         });
     }
 };
-
+//register
 export const register = (userData) => async (dispatch) => {
     try {
         dispatch({ type: userActionTypes.REGISTER_USER_REQUEST });
@@ -40,6 +40,43 @@ export const register = (userData) => async (dispatch) => {
         dispatch({
             type: userActionTypes.REGISTER_USER_FAIL,
             payload: error.response.data.message,
+        })
+    }
+};
+//load user 
+export const loadUser = () => async (disptach) => {
+    try {
+        disptach({
+            type: userActionTypes.LOAD_USER_REQUEST,
+        });
+
+        const { data } = await axios.get(`/api/v1/me`);
+        disptach(
+            {
+                type: userActionTypes.LOAD_USER_SUCCESS,
+                payload: data.user
+            }
+        );
+    } catch (error) {
+        disptach({
+            type: userActionTypes.LOAD_USER_FAIL,
+            payload: error.response.data.message
+        })
+    };
+};
+
+//logout user
+
+export const logout = () => async (disptach) => {
+    try {
+        await axios.get(`/api/v1/logout`);
+        disptach({
+            type: userActionTypes.LOGOUT_SUCCESS,
+        });
+    } catch (error) {
+        disptach({
+            type: userActionTypes.LOGOUT_FAIL,
+            payload: error.response.data.message
         })
     }
 };

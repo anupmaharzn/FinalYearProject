@@ -178,7 +178,7 @@ const LoginSignUp = () => {
                                 type="submit"
                                 value="Register"
                                 className='btn btn__cart'
-                            //disabled={loading ? true : false}
+                                disabled={loading ? true : false}
                             />
                         </form>
                     </div>
