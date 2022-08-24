@@ -81,6 +81,32 @@ export const logout = () => async (disptach) => {
     }
 };
 
+//update user profile
+
+export const updateProfile = (userData) => async (dispatch) => {
+    try {
+        dispatch({
+            type: userActionTypes.UPDATE_PROFILE_REQUEST
+        });
+
+        const config = { headers: { "Content-Type": "multipart/form-data" } };
+
+        const { data } = await axios.put(`/api/v1/me/update`, userData, config);
+
+        dispatch({
+            type: userActionTypes.UPDATE_PROFILE_SUCCESS,
+            payload: data.success,
+        });
+
+    } catch (error) {
+        dispatch({
+            type: userActionTypes.UPDATE_PROFILE_FAIL,
+            payload: error.response.data.message,
+        })
+    }
+}
+
+
 //clearing errors
 export const clearErrors = () => (disptach) => {
     disptach({

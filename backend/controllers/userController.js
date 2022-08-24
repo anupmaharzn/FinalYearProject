@@ -210,7 +210,25 @@ exports.updateProfile = catchAsyncError(
             name: req.body.name,
             email: req.body.email,
         }
-        //we will add cloudnary later
+        if (req.body.avatar !== "") {
+            const user = await User.findById(req.user.id);
+
+            const imageid = user.avatar.public_id;
+
+            await cloudinary.v2.uploader.destroy(imageid);
+
+            const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
+                folder: 'avatars',
+                width: 150,
+                crop: "scale",
+
+            });
+
+            newUserData.avatar = {
+                public_id: myCloud.public_id,
+                url: myCloud.secure_url,
+            }
+        }
 
         const user = await User.findByIdAndUpdate(req.user.id, newUserData, {
             new: true,

@@ -43,14 +43,14 @@ const Header = () => {
 
                     </NavLink>
 
-
-                    <NavLink to='/login' className="icon__btn">
+                    {isAuthenticated ? (<div> {isAuthenticated && <UserOptions user={user} />}</div>) : (<NavLink to='/login' className="icon__btn">
                         <span>
                             <img className="iconimg" alt="iconimg" src={loginicon}></img>
                         </span>
 
-                    </NavLink>
-                    <div> {isAuthenticated && <UserOptions user={user} />}</div>
+                    </NavLink>)}
+
+
                 </div>
 
             </nav>
