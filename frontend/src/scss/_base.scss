@@ -12,6 +12,7 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
+
 /*firefox*/
 input[type="number"] {
   -moz-appearance: textfield;
@@ -28,6 +29,7 @@ body {
   background-color: var(--body-color);
   color: var(--text-color);
 }
+
 h1,
 h2,
 h3 {
@@ -35,6 +37,7 @@ h3 {
   color: var(--title-color);
   line-height: 1.5;
 }
+
 ul {
   list-style: none;
 }
@@ -52,24 +55,28 @@ a {
   padding: 0.75rem 1.5rem;
   border-radius: 0.2rem;
   font-weight: var(--font-normal);
-  transition: 0.3s;
+  transition: all 0.3s;
   cursor: pointer;
+
   &:hover {
     background-color: #8d295f;
     transition: ease-in-out 0.3;
   }
+
   &__cart {
     border: solid 1px #d23f57;
     transition: all 0.5s ease-in-out 0s;
     font-weight: 600;
     font-family: "roboto", sans-serif;
     font-size: 14px;
+
     &:hover {
       background: transparent;
       color: #212529;
     }
   }
 }
+
 .signbutton {
   display: inline-flex;
   align-items: center;
@@ -89,14 +96,17 @@ a {
 
   color: #d23f57;
   cursor: pointer;
+
   &:hover {
     border: 1px solid #8b0017;
     transition: ease-in-out 0.3;
   }
 }
+
 .greenColor {
   color: rgb(58, 71, 38);
 }
+
 .redColor {
   color: red;
 }

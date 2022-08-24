@@ -5,7 +5,7 @@ import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import FaceIcon from '@material-ui/icons/Face';
 // eslint-disable-next-line
-import Loader from '../../components/layout/Loader/loader';
+import Loader from '../layout/Loader/loader';
 // eslint-disable-next-line
 import { useDispatch, useSelector } from 'react-redux';
 // eslint-disable-next-line

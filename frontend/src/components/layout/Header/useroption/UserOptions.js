@@ -25,14 +25,14 @@ const UserOptions = ({ user }) => {
     }
 
     function dashboard() {
-        history('/dashboard');
+        history("/dashboard");
 
     };
     function orders() {
-        history('/orders');
+        history("/orders");
     };
     function account() {
-        history('/account');
+        history("/account");
     };
     function logoutUser() {
         dispatch(logout());

@@ -11,9 +11,11 @@ import Products from './components/Products/Products.js';
 import LoginSignUp from "./components/user/LoginSignUp";
 import store from '../src/redux/store';
 import { loadUser } from "./redux/actions/userAction";
-
-
+import Profile from './components/user/Profile/Profile.js';
+// import ProtectedRoute from "./components/Route/ProtectedRoute";
+// import { useSelector } from 'react-redux';
 function App() {
+  // const { isAuthenticated } = useSelector((state) => state.user);
   //given when we reload we dont lose logined user data
   //render once after initial render
   React.useEffect(() => {
@@ -26,13 +28,16 @@ function App() {
       <ScrollToTop />
       <TopHeader />
       <Header />
+
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route exact path="/product/:id" element={<ProductDetails />} />
         <Route exact path="/products" element={<Products />} />
         <Route path="/products/:keyword" element={<Products />} />
-        <Route exact path='/login' element={<LoginSignUp />} />
+        <Route path="/account" element={<Profile />} />
+        <Route exact path="/login" element={<LoginSignUp />} />
       </Routes>
+
       <Footer />
     </Router>
 
