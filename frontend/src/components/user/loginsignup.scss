@@ -97,15 +97,6 @@
     outline: none;
 }
 
-.loginform>div>svg,
-.signinform>div>svg {
-    position: absolute;
-    transform: translate(1vmax);
-    font-size: 1.6vmax;
-    color: rgba(0, 0, 0, 0.623);
-
-}
-
 .loginform>a {
     color: rgba(0, 0, 0, 0.623);
     text-decoration: none;
@@ -169,4 +160,19 @@
 
 .shiftToRight {
     transform: translateX(100%);
+}
+
+.lefticon {
+    position: absolute;
+    transform: translate(1vmax);
+    font-size: 1.6vmax;
+    color: rgba(0, 0, 0, 0.623);
+}
+
+.righticon {
+    position: absolute;
+    transform: translate(18vmax);
+    font-size: 1.4vmax;
+    color: rgba(0, 0, 0, 0.623);
+    cursor: pointer;
 }

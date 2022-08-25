@@ -88,7 +88,7 @@ export const updateProfile = (userData) => async (dispatch) => {
         dispatch({
             type: userActionTypes.UPDATE_PROFILE_REQUEST
         });
-
+        //coz we are send multi data with image so content type specify garnu ramro ho 
         const config = { headers: { "Content-Type": "multipart/form-data" } };
 
         const { data } = await axios.put(`/api/v1/me/update`, userData, config);
@@ -104,8 +104,31 @@ export const updateProfile = (userData) => async (dispatch) => {
             payload: error.response.data.message,
         })
     }
-}
+};
 
+//update user password
+
+export const updatePassword = (passwords) => async (dispatch) => {
+    try {
+        dispatch({
+            type: userActionTypes.UPDATE_PASSWORD_REQUEST,
+        });
+
+        const config = { headers: { "Content-Type": "application/json" } };
+
+        const { data } = await axios.put(`/api/v1/password/update`, passwords, config);
+
+        dispatch({
+            type: userActionTypes.UPDATE_PASSWORD_SUCCESS,
+            payload: data.success,
+        });
+    } catch (error) {
+        dispatch({
+            type: userActionTypes.UPDATE_PASSWORD_FAIL,
+            payload: error.response.data.message,
+        })
+    }
+};
 
 //clearing errors
 export const clearErrors = () => (disptach) => {

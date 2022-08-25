@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import FaceIcon from '@material-ui/icons/Face';
+import VisibilityOutlinedIcon from '@material-ui/icons/VisibilityOutlined'
+import VisibilityOffOutlinedIcon from '@material-ui/icons/VisibilityOffOutlined'
 // eslint-disable-next-line
 import Loader from '../layout/Loader/loader';
 // eslint-disable-next-line
@@ -12,6 +14,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { login, register, clearErrors } from '../../redux/actions/userAction';
 import { useAlert } from 'react-alert';
 import { useNavigate } from 'react-router-dom';
+import MetaData from '../layout/Metadata';
+
+
 import './loginsignup.scss'
 
 const LoginSignUp = () => {
@@ -35,6 +40,18 @@ const LoginSignUp = () => {
     const { name, email, password } = user;
     const [avatar, setAvatar] = useState('');
     const [avatarPreview, setAvatarPreview] = useState('/Profile.png');
+
+    //for password show and hide icon 
+    const [ispasswordShow, setispasswordShow] = useState(false);
+    const [issignUppasswordShow, setsignuppasswordShow] = useState(false);
+
+    const toggleispasswordshow = () => {
+        setispasswordShow(!ispasswordShow);
+
+    }
+    const toggleissignUppasswordShow = () => {
+        setsignuppasswordShow(!issignUppasswordShow);
+    }
 
     useEffect(() => {
         if (error) {
@@ -94,9 +111,11 @@ const LoginSignUp = () => {
             setUser({ ...user, [e.target.name]: e.target.value });
         }
     };
+
     return (
         <React.Fragment>
             {loading ? <Loader /> : <React.Fragment>
+                <MetaData title="Login/Register" />
                 <div className='loginSignUpContainer'>
                     <div className='loginsignupbox'>
                         <div className='tabcontainer'>
@@ -108,7 +127,7 @@ const LoginSignUp = () => {
                         </div>
                         <form className='loginform' ref={loginTab} onSubmit={loginSubmit}>
                             <div className='loginEmail'>
-                                <MailOutlineIcon />
+                                <MailOutlineIcon className='lefticon' />
                                 <input
                                     type="email"
                                     placeholder='Email'
@@ -118,21 +137,22 @@ const LoginSignUp = () => {
                                 />
                             </div>
                             <div className='loginPassword'>
-                                <LockOpenIcon />
+                                <LockOpenIcon className='lefticon' />
                                 <input
-                                    type="password"
+                                    type={ispasswordShow ? "text" : "password"}
                                     placeholder="Password"
                                     required
                                     value={loginPassword}
                                     onChange={(e) => setLoginPassword(e.target.value)}
                                 />
+                                {ispasswordShow ? <VisibilityOffOutlinedIcon className='righticon' onClick={toggleispasswordshow} /> : <VisibilityOutlinedIcon className='righticon' onClick={toggleispasswordshow} />}
                             </div>
                             <Link to="/password/forget">Forget Password?</Link>
                             <input type="submit" value="Login" className="btn btn__cart" />
                         </form>
                         <form className="signinform" ref={registerTab} encType="multipart/form-data" onSubmit={registerSubmit}>
                             <div className='signUpName'>
-                                <FaceIcon />
+                                <FaceIcon className='lefticon' />
                                 <input
                                     type="text"
                                     placeholder='Name'
@@ -143,7 +163,7 @@ const LoginSignUp = () => {
                                 />
                             </div>
                             <div className='signUpEmail'>
-                                <MailOutlineIcon />
+                                <MailOutlineIcon className='lefticon' />
                                 <input
                                     type="email"
                                     placeholder='Email'
@@ -154,15 +174,16 @@ const LoginSignUp = () => {
                                 />
                             </div>
                             <div className='signUpPassword'>
-                                <LockOpenIcon />
+                                <LockOpenIcon className='lefticon' />
                                 <input
-                                    type="password"
+                                    type={issignUppasswordShow ? "text" : "password"}
                                     placeholder='Password'
                                     required
                                     name="password"
                                     value={password}
                                     onChange={registerDataChange}
                                 />
+                                {issignUppasswordShow ? <VisibilityOffOutlinedIcon className='righticon' onClick={toggleissignUppasswordShow} /> : <VisibilityOutlinedIcon className='righticon' onClick={toggleissignUppasswordShow} />}
                             </div>
 
                             <div id="registerImage">

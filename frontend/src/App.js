@@ -13,6 +13,7 @@ import store from '../src/redux/store';
 import { loadUser } from "./redux/actions/userAction";
 import Profile from './components/user/Profile/Profile.js';
 import UpdateProfile from './components/user/UpdateProfile/UpdateProfile.js';
+import UpdatePassword from './components/user/UpdatePassword/UpdatePassword.js';
 // import ProtectedRoute from "./components/Route/ProtectedRoute";
 // import { useSelector } from 'react-redux';
 function App() {
@@ -37,6 +38,7 @@ function App() {
         <Route path="/products/:keyword" element={<Products />} />
         <Route path="/account" element={<Profile />} />
         <Route exact path="/me/update" element={<UpdateProfile />} />
+        <Route exact path="/password/update" element={<UpdatePassword />} />
         <Route exact path="/login" element={<LoginSignUp />} />
 
       </Routes>
