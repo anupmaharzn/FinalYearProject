@@ -1,42 +1,39 @@
 import React, { useState, useEffect } from 'react'
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import LockIcon from '@material-ui/icons/Lock';
-import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import MetaData from '../../layout/Metadata';
 import Loader from '../../layout/Loader/loader';
 import { useDispatch, useSelector } from 'react-redux';
-import { updatePassword, clearErrors } from '../../../redux/actions/userAction';
+import { resetPassword, clearErrors } from '../../../redux/actions/userAction';
 import { useAlert } from 'react-alert';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import * as userActionTypes from '../../../redux/constants/userActionTypes';
-import './updatepassword.scss'
 import VisibilityOutlinedIcon from '@material-ui/icons/VisibilityOutlined'
 import VisibilityOffOutlinedIcon from '@material-ui/icons/VisibilityOffOutlined'
+import './resetpassword.scss'
 
 
-const UpdatePassword = () => {
-
+const ResetPassword = () => {
     const dispatch = useDispatch();
     const alert = useAlert();
     const history = useNavigate();
-    const { isAuthenticated } = useSelector((state) => state.user);
-    const { error, isUpdated, loading } = useSelector((state) => state.profile);
+    const { token } = useParams();
+    const { error, success, loading } = useSelector((state) => state.forgotPassword);
 
-    const [oldPassword, setOldPassword] = useState("");
-    const [newPassword, setNewPassword] = useState("");
+
+    const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
 
 
 
-    const updatePasswordSubmit = (e) => {
+    const resetPasswordSubmit = (e) => {
         e.preventDefault();
         const myform = new FormData();
 
-        myform.set('oldPassword', oldPassword);
-        myform.set('newPassword', newPassword);
+        myform.set('password', password);
         myform.set('confirmPassword', confirmPassword);
         //disptach user action for update the profile
-        dispatch(updatePassword(myform));
+        dispatch(resetPassword(token, myform));
         console.log(" change password form submitted")
     };
 
@@ -46,34 +43,26 @@ const UpdatePassword = () => {
             alert.error(error);
             dispatch(clearErrors());
         }
-        if (isUpdated) {
+        if (success) {
             alert.success("Password Updated Sucessfully");
             //after that basicaly navigate hunxa account route maa aka profile
-            history('/account');
+            history('/login');
             //after update compeleted isUpdate false garnu ko lagi
             dispatch({
                 type: userActionTypes.UPDATE_PASSWORD_RESET
             });
         }
-        //protected route vako vayira 
-        if (isAuthenticated === false) {
-            history('/login');
-        }
-    }, [dispatch, error, alert, history, isUpdated, isAuthenticated]);
+    }, [dispatch, error, alert, history, success,]);
 
 
     //for password show and hide icon (repeated code not good but fuck it)
-    const [isoldpasswordShow, setisoldpasswordShow] = useState(false);
-    const [isnewpasswordShow, setisnewpasswordShow] = useState(false);
+
+    const [ispasswordShow, setispasswordShow] = useState(false);
     const [isconfirmpasswordShow, setisconfirmpasswordShow] = useState(false);
 
-    const toggleisoldpasswordshow = () => {
+    const toggleispasswordShow = () => {
 
-        setisoldpasswordShow(!isoldpasswordShow);
-    }
-    const toggleisnewpasswordshow = () => {
-
-        setisnewpasswordShow(!isnewpasswordShow);
+        setispasswordShow(!ispasswordShow);
     }
     const toggleisconfirmpasswordshow = () => {
 
@@ -83,36 +72,25 @@ const UpdatePassword = () => {
     return (
         <React.Fragment>
             {loading ? (<Loader />) : (<React.Fragment>
-                <MetaData title="Change Password" />
-                <div className='updatePasswordContainer' >
-                    <div className='updatePasswordBox'>
-                        <h2 className='updatePasswordHeading'>Update Profile</h2>
-                        <form className="updatePasswordForm"
+                <MetaData title="Reset Password" />
+                <div className='resetPasswordContainer' >
+                    <div className='resetPasswordBox'>
+                        <h2 className='resetPasswordHeading'>Update Profile</h2>
+                        <form className="resetPasswordForm"
                             encType="multipart/form-data"
-                            onSubmit={updatePasswordSubmit}
+                            onSubmit={resetPasswordSubmit}
                         >
 
                             <div className='loginPassword'>
-                                <VpnKeyIcon className='lefticon' />
-                                <input
-                                    type={isoldpasswordShow ? "text" : "password"}
-                                    placeholder="Old Password"
-                                    required
-                                    value={oldPassword}
-                                    onChange={(e) => setOldPassword(e.target.value)}
-                                />
-                                {isoldpasswordShow ? <VisibilityOffOutlinedIcon className='righticon' onClick={toggleisoldpasswordshow} /> : <VisibilityOutlinedIcon className='righticon' onClick={toggleisoldpasswordshow} />}
-                            </div>
-                            <div className='loginPassword'>
                                 <LockOpenIcon className='lefticon' />
                                 <input
-                                    type={isnewpasswordShow ? "text" : "password"}
+                                    type={ispasswordShow ? "text" : "password"}
                                     placeholder="New Password"
                                     required
-                                    value={newPassword}
-                                    onChange={(e) => setNewPassword(e.target.value)}
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
                                 />
-                                {isnewpasswordShow ? <VisibilityOffOutlinedIcon className='righticon' onClick={toggleisnewpasswordshow} /> : <VisibilityOutlinedIcon className='righticon' onClick={toggleisnewpasswordshow} />}
+                                {ispasswordShow ? <VisibilityOffOutlinedIcon className='righticon' onClick={toggleispasswordShow} /> : <VisibilityOutlinedIcon className='righticon' onClick={toggleispasswordShow} />}
                             </div>
 
                             <div className='loginPassword'>
@@ -129,7 +107,7 @@ const UpdatePassword = () => {
 
                             <input
                                 type="submit"
-                                value="Change"
+                                value="Update"
                                 className='btn btn__cart'
                                 disabled={loading ? true : false}
                             />
@@ -141,4 +119,4 @@ const UpdatePassword = () => {
     )
 }
 
-export default UpdatePassword
+export default ResetPassword

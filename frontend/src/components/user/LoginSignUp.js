@@ -147,7 +147,7 @@ const LoginSignUp = () => {
                                 />
                                 {ispasswordShow ? <VisibilityOffOutlinedIcon className='righticon' onClick={toggleispasswordshow} /> : <VisibilityOutlinedIcon className='righticon' onClick={toggleispasswordshow} />}
                             </div>
-                            <Link to="/password/forget">Forget Password?</Link>
+                            <Link to="/password/forgot">Forgot Password?</Link>
                             <input type="submit" value="Login" className="btn btn__cart" />
                         </form>
                         <form className="signinform" ref={registerTab} encType="multipart/form-data" onSubmit={registerSubmit}>

@@ -101,8 +101,8 @@ exports.forgotPassword = catchAsyncError(
         await user.save({ validateBeforeSave: false });
 
         // lets make link so resettoken append garira pathauna(query)
-
-        const resetPasswordUrl = `${req.protocol}://${req.get('host')}/api/v1/password/reset/${resetToken}`;
+        //if we deploy then this ${req.protocol}://${req.get('host')}
+        const resetPasswordUrl = `${process.env.FRONTEND_URL}/password/reset/${resetToken}`;
 
         const message = `Your password reset token is :- \n\n ${resetPasswordUrl} \n\n If you have not requested this email then please ignore it`;
 
@@ -141,7 +141,7 @@ exports.resetPassword = catchAsyncError(
             resetPasswordExpire: { $gt: Date.now() }
         });
         if (!user) {
-            return next(new Errorhandler("Reset Password Token is invalif or has been expired", 400));
+            return next(new Errorhandler("Reset Password Token is invalid or has been expired", 400));
 
         }
 
