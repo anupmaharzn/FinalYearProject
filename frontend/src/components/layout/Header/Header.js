@@ -36,7 +36,7 @@ const Header = () => {
                     </ul>
                 </div>
                 <div className="nav__icons">
-                    <NavLink to='/' className="icon__btn">
+                    <NavLink to='/cart' className="icon__btn">
                         <span>
                             <img className="iconimg" alt="iconimg" src={carticon}></img>
                         </span>

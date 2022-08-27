@@ -26,7 +26,7 @@ const Product = ({ product }) => {
                 <div className='productsection__card__rating'>
                     <ReactStars {...options} /> <span>({product.numOfReviews})</span>
                 </div>
-                <p className='productsection__card__price'> &#8377;{product.price}</p>
+                <p className='productsection__card__price'> रू{product.price}</p>
 
             </div>
 

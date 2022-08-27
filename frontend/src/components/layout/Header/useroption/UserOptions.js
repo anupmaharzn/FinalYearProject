@@ -5,19 +5,21 @@ import DashboardIcon from '@material-ui/icons/Dashboard';
 import PersonIcon from '@material-ui/icons/Person';
 import ExitTopAppIcon from '@material-ui/icons/ExitToApp';
 import ListAltIcon from '@material-ui/icons/ListAlt';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import { useNavigate } from 'react-router-dom';
 import { useAlert } from 'react-alert';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../../../redux/actions/userAction';
 const UserOptions = ({ user }) => {
     const [open, setOpen] = useState(false);
     const history = useNavigate();
     const alert = useAlert();
     const dispatch = useDispatch();
-
+    const { cartItems } = useSelector((state) => state.cart);
     const options = [
         { icon: <ListAltIcon />, name: "Orders", func: orders },
         { icon: <PersonIcon />, name: "Profile", func: account },
+        { icon: <ShoppingCartIcon style={{ color: cartItems.length > 0 ? "tomato" : "unset" }} />, name: `Cart(${cartItems.length})`, func: cart },
         { icon: <ExitTopAppIcon />, name: 'Logout', func: logoutUser },
     ];
     if (user.role === 'admin') {
@@ -33,6 +35,9 @@ const UserOptions = ({ user }) => {
     };
     function account() {
         history("/account");
+    };
+    function cart() {
+        history('/cart');
     };
     function logoutUser() {
         dispatch(logout());

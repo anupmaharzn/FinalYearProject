@@ -13,6 +13,7 @@
     line-height: 60px;
     margin-bottom: 22px;
   }
+
   &__description {
     font-size: var(--small-font-size);
     font-weight: var(--font-normal);
@@ -20,25 +21,29 @@
     line-height: 25px;
     margin-bottom: 22px;
   }
+
   &__image {
     width: 343px;
   }
+
   &__button {
     width: 148px;
     display: inline-block;
     text-align: center;
-    background-color: var(--botton-color);
+    background-color: var(--button-color);
     color: var(--container-color);
     padding: 0.75rem 1.5rem;
     border-radius: 0.2rem;
     font-weight: var(--font-normal);
     transition: 0.3s;
     margin-bottom: 22px;
+
     &:hover {
       background-color: #8d295f;
       transition: ease-in-out 0.3;
     }
   }
+
   &__item {
     display: grid !important;
     grid-template-columns: 1fr 1fr;
@@ -47,6 +52,7 @@
     padding: 5rem;
     gap: 3rem;
   }
+
   &__sectiondes {
     display: flex !important;
     flex-direction: column;
@@ -54,22 +60,27 @@
     padding-top: 24px;
     padding-left: 50px;
   }
+
   &__sectionimg {
     padding-top: 24px;
     padding-left: 50px;
   }
 }
+
 .slick-prev:before,
 .slick-next:before {
   font-family: "fontawesome";
   font-size: 30px;
 }
+
 .slick-prev:before {
   content: "";
 }
+
 .slick-next:before {
   content: "";
 }
+
 .slick-dots li button:before {
   font-size: 1rem;
   color: var(--topline-header-color) !important;
