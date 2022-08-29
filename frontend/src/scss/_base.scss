@@ -57,6 +57,7 @@ a {
   font-weight: var(--font-normal);
   cursor: pointer;
   transition: all 0.3 ease-in-out;
+  outline: none;
 
   &:hover {
     background-color: #8d295f;

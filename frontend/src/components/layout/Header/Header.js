@@ -9,9 +9,11 @@ import Search from '../../Search/Search';
 import UserOptions from "./useroption/UserOptions";
 import { useSelector } from 'react-redux';
 
+
 const Header = () => {
 
     const { isAuthenticated, user } = useSelector((state) => state.user);
+    const { cartItems } = useSelector((state) => state.cart);
     const [Header, setHeader] = useState(false);
 
     const handleHeader = () => {
@@ -39,7 +41,9 @@ const Header = () => {
                     <NavLink to='/cart' className="icon__btn">
                         <span>
                             <img className="iconimg" alt="iconimg" src={carticon}></img>
+
                         </span>
+                        <span className="cartnumber" style={{ background: cartItems.length > 0 ? `var(--button-color)` : "unset" }} >{cartItems.length}</span>
 
                     </NavLink>
 
