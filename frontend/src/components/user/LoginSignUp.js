@@ -1,6 +1,6 @@
 // eslint-disable-next-line
 import React, { useRef, useState, useEffect } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import FaceIcon from '@material-ui/icons/Face';
@@ -13,7 +13,7 @@ import { useDispatch, useSelector } from 'react-redux';
 // eslint-disable-next-line
 import { login, register, clearErrors } from '../../redux/actions/userAction';
 import { useAlert } from 'react-alert';
-import { useNavigate } from 'react-router-dom';
+
 import MetaData from '../layout/Metadata';
 
 
@@ -23,6 +23,7 @@ const LoginSignUp = () => {
     const dispatch = useDispatch();
     const alert = useAlert();
     const history = useNavigate();
+    const location = useLocation();
     const { error, loading, isAuthenticated } = useSelector((state) => state.user);
 
     const loginTab = useRef(null);
@@ -51,7 +52,11 @@ const LoginSignUp = () => {
     }
     const toggleissignUppasswordShow = () => {
         setsignuppasswordShow(!issignUppasswordShow);
-    }
+    };
+
+    //if checkoutbutton clicked ifnotlogin go to /login otherwise go to /login/shipping
+
+    const redirect = location.search ? location.search.split("=")[1] : "/account";
 
     useEffect(() => {
         if (error) {
@@ -59,9 +64,9 @@ const LoginSignUp = () => {
             dispatch(clearErrors());
         }
         if (isAuthenticated) {
-            history('/account');
+            history(redirect);
         }
-    }, [dispatch, error, alert, history, isAuthenticated])
+    }, [dispatch, error, alert, history, isAuthenticated, redirect]);
 
     const switchTabs = (e, tab) => {
         if (tab === "login") {
