@@ -5,14 +5,14 @@ import Loader from '../../layout/Loader/loader';
 import { useDispatch, useSelector } from 'react-redux';
 import { forgotPassword, clearErrors } from '../../../redux/actions/userAction';
 import { useAlert } from 'react-alert';
-import { useNavigate } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import './forgotpassword.scss'
 
 const ForgotPassword = () => {
     const dispatch = useDispatch();
     const alert = useAlert();
-    const history = useNavigate();
+    const history = useHistory();
 
     const { error, message, loading } = useSelector((state) => state.forgotPassword);
 

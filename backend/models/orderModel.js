@@ -22,7 +22,7 @@ const orderSchema = new mongoose.Schema({
             default: 'Nepal',
         },
 
-        pincode: {
+        pinCode: {
             type: Number,
             required: true
         },

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { saveShippingInfo } from '../../../redux/actions/cartAction';
 import HomeIcon from '@material-ui/icons/Home'
@@ -7,18 +7,19 @@ import LocationCityIcon from '@material-ui/icons/LocationCity'
 import PublicIcon from '@material-ui/icons/Public'
 import PhoneIcon from '@material-ui/icons/Phone'
 import TransferWithAStationIcon from '@material-ui/icons/TransferWithinAStation'
-import { Country, State } from "country-state-city"
+import { State } from "country-state-city"
 import { useAlert } from 'react-alert';
 import './shipping.scss';
 import MetaData from '../../layout/Metadata';
 import CheckoutSteps from './CheckoutSteps/CheckoutSteps';
-import { useNavigate } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+
 const Shipping = () => {
 
     const dispatch = useDispatch();
     const alert = useAlert();
-    const history = useNavigate();
-    const { isAuthenticated } = useSelector((state) => state.user);
+    const history = useHistory();
+
     const { shippingInfo } = useSelector((state) => state.cart);
 
     const [address, setAddress] = useState(shippingInfo.address);
@@ -37,14 +38,9 @@ const Shipping = () => {
         dispatch(
             saveShippingInfo({ address, city, country, state, pinCode, phoneNo }),
         );
-        history('/order/confirm');
+        history.push('/order/confirm');
     };
-    useEffect(() => {
-        //protected route vako vayira 
-        if (isAuthenticated === false) {
-            history('/login');
-        }
-    }, [history, isAuthenticated]);
+
 
     return (
         <React.Fragment>

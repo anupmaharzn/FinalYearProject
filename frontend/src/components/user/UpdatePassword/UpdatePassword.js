@@ -7,18 +7,18 @@ import Loader from '../../layout/Loader/loader';
 import { useDispatch, useSelector } from 'react-redux';
 import { updatePassword, clearErrors } from '../../../redux/actions/userAction';
 import { useAlert } from 'react-alert';
-import { useNavigate } from 'react-router-dom';
+
 import * as userActionTypes from '../../../redux/constants/userActionTypes';
 import './updatepassword.scss'
 import VisibilityOutlinedIcon from '@material-ui/icons/VisibilityOutlined'
 import VisibilityOffOutlinedIcon from '@material-ui/icons/VisibilityOffOutlined'
 
 
-const UpdatePassword = () => {
+const UpdatePassword = ({ history }) => {
 
     const dispatch = useDispatch();
     const alert = useAlert();
-    const history = useNavigate();
+
     const { isAuthenticated } = useSelector((state) => state.user);
     const { error, isUpdated, loading } = useSelector((state) => state.profile);
 
@@ -49,15 +49,11 @@ const UpdatePassword = () => {
         if (isUpdated) {
             alert.success("Password Updated Sucessfully");
             //after that basicaly navigate hunxa account route maa aka profile
-            history('/account');
+            history.push('/account');
             //after update compeleted isUpdate false garnu ko lagi
             dispatch({
                 type: userActionTypes.UPDATE_PASSWORD_RESET
             });
-        }
-        //protected route vako vayira 
-        if (isAuthenticated === false) {
-            history('/login');
         }
     }, [dispatch, error, alert, history, isUpdated, isAuthenticated]);
 

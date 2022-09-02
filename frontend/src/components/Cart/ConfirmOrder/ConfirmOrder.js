@@ -1,16 +1,16 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import CheckoutSteps from '../Shipping/CheckoutSteps/CheckoutSteps'
 import { useSelector } from 'react-redux'
 import MetaData from '../../layout/Metadata'
 import { Link } from 'react-router-dom'
 import { Typography } from '@material-ui/core'
-import { useNavigate } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import './confirmorder.scss'
 
 const ConfirmOrder = () => {
-    const history = useNavigate();
+    const history = useHistory();
     const { shippingInfo, cartItems } = useSelector((state) => state.cart);
-    const { user, isAuthenticated } = useSelector((state) => state.user);
+    const { user } = useSelector((state) => state.user);
 
     const subtotal = cartItems.reduce(
         (acc, item) => acc + item.quantity * item.price, 0
@@ -32,15 +32,9 @@ const ConfirmOrder = () => {
             totalPrice,
         };
         sessionStorage.setItem("orderInfo", JSON.stringify(data));
-        history('/process/payment');
+        history.push('/process/payment');
     }
 
-    useEffect(() => {
-        //protected route vako vayira 
-        if (!isAuthenticated) {
-            history('/login');
-        }
-    }, [history, isAuthenticated]);
 
     return (
         <React.Fragment>

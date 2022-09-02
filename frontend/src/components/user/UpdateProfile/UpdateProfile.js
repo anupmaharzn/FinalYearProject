@@ -6,15 +6,14 @@ import Loader from '../../layout/Loader/loader';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateProfile, clearErrors, loadUser } from '../../../redux/actions/userAction';
 import { useAlert } from 'react-alert';
-import { useNavigate } from 'react-router-dom';
 import * as userActionTypes from '../../../redux/constants/userActionTypes';
 import './updateprofile.scss'
 
-const UpdateProfile = () => {
+const UpdateProfile = ({ history }) => {
 
     const dispatch = useDispatch();
     const alert = useAlert();
-    const history = useNavigate();
+
     const { user, isAuthenticated } = useSelector((state) => state.user);
     const { error, isUpdated, loading } = useSelector((state) => state.profile);
 
@@ -63,16 +62,13 @@ const UpdateProfile = () => {
             //new updata data load garna ko lagi
             dispatch(loadUser());
             //after that basicaly navigate hunxa account route maa aka profile
-            history('/account');
+            history.push('/account');
             //after update compeleted isUpdate false garnu ko lagi
             dispatch({
                 type: userActionTypes.UPDATE_PROFILE_RESET
             })
         }
-        //protected route vako vayira 
-        if (isAuthenticated === false) {
-            history('/login');
-        }
+
     }, [dispatch, error, alert, history, user, isUpdated, isAuthenticated]);
 
 

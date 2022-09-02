@@ -1,6 +1,6 @@
 // eslint-disable-next-line
 import React, { useRef, useState, useEffect } from 'react'
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import FaceIcon from '@material-ui/icons/Face';
@@ -19,11 +19,9 @@ import MetaData from '../layout/Metadata';
 
 import './loginsignup.scss'
 
-const LoginSignUp = () => {
+const LoginSignUp = ({ history, location }) => {
     const dispatch = useDispatch();
     const alert = useAlert();
-    const history = useNavigate();
-    const location = useLocation();
     const { error, loading, isAuthenticated } = useSelector((state) => state.user);
 
     const loginTab = useRef(null);
@@ -64,7 +62,7 @@ const LoginSignUp = () => {
             dispatch(clearErrors());
         }
         if (isAuthenticated) {
-            history(redirect);
+            history.push(redirect);
         }
     }, [dispatch, error, alert, history, isAuthenticated, redirect]);
 

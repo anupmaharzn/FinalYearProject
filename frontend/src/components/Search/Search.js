@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import searchicon from '../../assets/images/search-icon.png';
 import './search.scss'
 const Search = () => {
 
-  const history = useNavigate();
+  const history = useHistory();
 
   const [keyword, setKeyword] = useState('');
 
@@ -12,10 +12,10 @@ const Search = () => {
     e.preventDefault();
 
     if (keyword) {
-      history(`/products/${keyword}`);
+      history.push(`/products/${keyword}`);
     }
     else {
-      history('/products');
+      history.push('/products');
     }
 
   };

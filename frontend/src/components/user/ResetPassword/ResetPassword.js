@@ -6,17 +6,17 @@ import Loader from '../../layout/Loader/loader';
 import { useDispatch, useSelector } from 'react-redux';
 import { resetPassword, clearErrors } from '../../../redux/actions/userAction';
 import { useAlert } from 'react-alert';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import * as userActionTypes from '../../../redux/constants/userActionTypes';
 import VisibilityOutlinedIcon from '@material-ui/icons/VisibilityOutlined'
 import VisibilityOffOutlinedIcon from '@material-ui/icons/VisibilityOffOutlined'
 import './resetpassword.scss'
 
 
-const ResetPassword = () => {
+const ResetPassword = ({ history }) => {
     const dispatch = useDispatch();
     const alert = useAlert();
-    const history = useNavigate();
+
     const { token } = useParams();
     const { error, success, loading } = useSelector((state) => state.forgotPassword);
 
@@ -46,7 +46,7 @@ const ResetPassword = () => {
         if (success) {
             alert.success("Password Updated Sucessfully");
             //after that basicaly navigate hunxa account route maa aka profile
-            history('/login');
+            history.push('/login');
             //after update compeleted isUpdate false garnu ko lagi
             dispatch({
                 type: userActionTypes.UPDATE_PASSWORD_RESET

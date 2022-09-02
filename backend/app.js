@@ -31,11 +31,12 @@ app.use(fileUpload());
 const product = require('./routes/productRoute');
 const user = require('./routes/userRoute');
 const order = require('./routes/orderRoute');
+const payment = require('./routes/paymentRoute');
 
 app.use(`${api}`, product);
 app.use(`${api}`, user);
 app.use(`${api}`, order);
-
+app.use(`${api}`, payment);
 //position matters sadly ducking top down approach
 //middleware for error
 app.use(errorMiddleware);

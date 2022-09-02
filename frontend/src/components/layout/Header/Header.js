@@ -33,8 +33,8 @@ const Header = () => {
                 < Search />
                 <div className="nav__menu">
                     <ul className="nav__menu__list">
-                        <NavLink exact="true" className="nav__items" to='/' activeclassname="active" >Home</NavLink>
-                        <NavLink exact="true" className="nav__items" to='/products' activeclassname="active">All Products</NavLink>
+                        <NavLink className="nav__items" to='/' activeclassname="active" >Home</NavLink>
+                        <NavLink className="nav__items" to='/products' activeclassname="active">All Products</NavLink>
                     </ul>
                 </div>
                 <div className="nav__icons">
