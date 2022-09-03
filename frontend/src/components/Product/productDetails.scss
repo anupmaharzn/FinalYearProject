@@ -2,12 +2,14 @@
   padding-left: 24px;
   padding-right: 24px;
   margin-top: 7.5rem;
+
   &__container {
     display: flex;
     justify-content: center;
     padding-top: 24px;
     padding-bottom: 24px;
   }
+
   &__imgCarousel {
     // width: 40%;
     // padding-right: 2rem;
@@ -17,10 +19,12 @@
     flex-direction: column;
     justify-content: space-evenly;
     padding: 2rem;
+
     &:last-child {
       align-items: flex-start;
     }
   }
+
   &__desc {
     width: 100%;
     display: flex;
@@ -38,11 +42,13 @@
         font-weight: var(--font-bold);
         color: var(--title-color);
       }
+
       p {
         color: var(--text-color);
         font-family: "Roboto", sans-serif;
       }
     }
+
     &__detailsblock-2 {
       display: flex;
       justify-content: flex-start;
@@ -51,23 +57,27 @@
       border-bottom: 0.5px solid rgba(0, 0, 0, 0.2);
       width: 70%;
       padding: 1rem 0;
-      span {
-        color: var(--text-color);
-        font-family: "Roboto", sans-serif;
+
+      &--span {
+        font: 300 1.4vmax cursive;
+        color: black;
       }
     }
+
     &__detailsblock-3 {
       h1 {
         font-size: var(--h2-font-size);
         font-weight: var(--font-bold);
-        color: var(--botton-color);
+        color: var(--button-color);
         padding-bottom: 1rem;
       }
+
       &__1 {
         display: flex;
         gap: 1rem;
         align-items: center;
         padding-bottom: 0.5rem;
+
         &-1 {
           display: flex;
           align-items: center;
@@ -86,6 +96,7 @@
             font-size: 20px;
             font-weight: 600;
             color: #2b3445;
+
             &:active {
               border: none;
               outline: none;
@@ -93,6 +104,7 @@
           }
         }
       }
+
       p {
         border-top: 0.5px solid rgba(0, 0, 0, 0.2);
         border-bottom: 0.5px solid rgba(0, 0, 0, 0.2);
@@ -108,6 +120,7 @@
       color: #2b3445;
       font-weight: 600;
       margin-bottom: 1rem;
+
       p {
         font-size: 14px;
         color: #2b3445;
@@ -117,20 +130,39 @@
     }
   }
 }
+
+.submitDialog {
+  display: flex;
+  flex-direction: column;
+}
+
+.submitDialogTextArea {
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  margin: 1vmax 0;
+  outline: none;
+  padding: 1rem;
+  font: 300 1rem "Roboto";
+}
+
+
+
 .CarouselImage {
   width: 100%;
   height: 400px;
   object-fit: contain;
 }
+
 .descriptioreview__tab {
   margin: 2rem 1.5rem;
   padding: 0 3rem;
+
   //imported react-tab compoenet sytles
   .react-tabs__tab-list {
     border-bottom: 1px solid #d24159;
     margin: 0 0 1.5rem;
     padding: 0;
   }
+
   .react-tabs__tab {
     display: inline-block;
     border: 1px solid transparent;
@@ -143,6 +175,7 @@
     color: #373f50;
     font-weight: 550;
   }
+
   .react-tabs__tab--selected {
     background: transparent;
     border-color: #d24159;
@@ -151,12 +184,14 @@
     font-weight: 550;
   }
 }
+
 .tab_description_content {
   width: 60%;
   font-size: 14px;
   color: #2b3445;
   font-family: "roboto", sans-serif;
 }
+
 .noreview {
   text-align: center;
   font-size: 1.5rem;

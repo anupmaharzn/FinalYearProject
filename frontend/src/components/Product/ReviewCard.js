@@ -1,15 +1,13 @@
 import React from 'react'
-import ReactStars from 'react-rating-stars-component';
-import profilePng from '../../assets/images/profile.jpg';
 import './reviewcard.scss'
+import { Rating } from '@material-ui/lab'
 const ProductCard = ({ review }) => {
   const options = {
-    edit: false,
-    color: 'rgba(20,20,20,0.1)',
-    activeColor: "#ffd700",
-    size: window.innerWidth < 600 ? 20 : 25,
+
+    size: "small",
     value: review.rating,
-    isHalf: true
+    readOnly: true,
+    precision: 0.5,
   };
   return (
     <div className='reviewCard'>
@@ -17,13 +15,13 @@ const ProductCard = ({ review }) => {
       <div className="reviewCard__reviews">
 
         <div className='reviewCard__reviews__imgwrapper'>
-          <img src={profilePng} alt='User' />
+          <img src={review.imgurl} alt='User' />
         </div>
 
         <div className='reviewCard__reviews__namewapper'>
           <h2>{review.name}</h2>
           <div className='reviewCard__reviews__namewapper__onediv'>
-            <ReactStars {...options} />
+            <Rating {...options} />
             <span>({review.rating})</span>
             {/* <span>{review.CreatedAt}</span> */}
           </div>

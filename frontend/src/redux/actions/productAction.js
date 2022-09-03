@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 import * as productactionTypes from '../constants/productactiontypes';
 
 
@@ -28,7 +29,7 @@ export const getProduct = (keyword = "", currentPage, price = [0, 25000], catego
     }
 
 };
-
+//get product details
 export const getProductDetails = (id) => async (dispatch) => {
     try {
         dispatch({
@@ -48,7 +49,33 @@ export const getProductDetails = (id) => async (dispatch) => {
             payload: error.response.data.message,
         })
     }
-}
+};
+
+//new review 
+
+export const newReview = (reviewData) => async (dispatch) => {
+    try {
+        dispatch({
+            type: productactionTypes.NEW_REVIEW_REQUEST,
+        });
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+            },
+        };
+        const { data } = await axios.put(`/api/v1/review`, reviewData, config);
+
+        dispatch({
+            type: productactionTypes.NEW_REVIEW_SUCCESS,
+            payload: data.success,
+        });
+    } catch (error) {
+        dispatch({
+            type: productactionTypes.NEW_REVIEW_FAIL,
+            payload: error.response.data.message,
+        });
+    }
+};
 
 //clearing errors
 export const clearErrors = () => async (dispatch) => {
