@@ -95,7 +95,7 @@ const ProductDetails = () => {
                                             <input type='number' readOnly value={quantity}></input>
                                             <button className='signbutton' onClick={increaseQuatity}>+</button>
                                         </div>{" "}
-                                        <button className="btn btn__cart " onClick={addToCartHandler}>Add to Cart</button>
+                                        <button disabled={product.stock < 1 ? true : false} className="btn btn__cart " onClick={addToCartHandler}>Add to Cart</button>
                                     </div>
                                     <p> Status:{" "}
                                         <b className={product.stock < 1 ? "redColor" : "greenColor"}>

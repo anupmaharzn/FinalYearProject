@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Header from "./components/layout/Header/Header";
 import TopHeader from "./components/layout/TopHeader/TopHeader";
 import Footer from './components/layout/Footer/Footer';
@@ -20,12 +20,13 @@ import Cart from './components/Cart/Cart.js'
 import Shipping from './components/Cart/Shipping/Shipping.js'
 import ConfirmOrder from "./components/Cart/ConfirmOrder/ConfirmOrder";
 import Payment from './components/Cart/Payment/Payment.js';
+import OrderSuccess from "./components/Cart/OrderSuccess/OrderSuccess";
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import axios from 'axios';
 import ProtectedRoute from "./components/Route/ProtectedRoute";
-import OrderSuccess from "./components/Cart/Payment/OrderSuccess.js"
-
+import MyOrders from './components/Order/MyOrders.js';
+import OrderDetails from './components/Order/OrderDetails/OrderDetails.js';
 function App() {
 
   //given when we reload we dont lose logined user data
@@ -71,7 +72,7 @@ function App() {
       <Route exact path="/cart" component={Cart} />
 
       <ProtectedRoute exact path="/shipping" component={Shipping} />
-      <ProtectedRoute exact path="/order/confirm" component={ConfirmOrder} />
+
 
       {stripeApiKey && (
         <Elements stripe={loadStripe(stripeApiKey)}>
@@ -81,6 +82,12 @@ function App() {
 
       <ProtectedRoute exact path='/success' component={OrderSuccess} />
 
+      <ProtectedRoute exact path='/orders' component={MyOrders} />
+
+      <Switch>
+        <ProtectedRoute exact path="/order/confirm" component={ConfirmOrder} />
+        <ProtectedRoute exact path="/order/:id" component={OrderDetails} />
+      </Switch>
 
       <Footer />
     </Router>
