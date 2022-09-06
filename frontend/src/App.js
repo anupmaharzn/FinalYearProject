@@ -27,6 +27,11 @@ import axios from 'axios';
 import ProtectedRoute from "./components/Route/ProtectedRoute";
 import MyOrders from './components/Order/MyOrders.js';
 import OrderDetails from './components/Order/OrderDetails/OrderDetails.js';
+import Dashboard from './components/Admin/Dashboard.js';
+import ProductList from './components/Admin/ProductList/ProductList.js'
+import NewProduct from "./components/Admin/NewProduct/NewProduct";
+import UpdateProduct from './components/Admin/UpdateProduct/UpdateProduct';
+
 function App() {
 
   //given when we reload we dont lose logined user data
@@ -89,6 +94,10 @@ function App() {
         <ProtectedRoute exact path="/order/:id" component={OrderDetails} />
       </Switch>
 
+      <ProtectedRoute isAdmin={true} exact path="/admin/dashboard" component={Dashboard} />
+      <ProtectedRoute isAdmin={true} exact path="/admin/products" component={ProductList} />
+      <ProtectedRoute isAdmin={true} exact path="/admin/product" component={NewProduct} />
+      <ProtectedRoute isAdmin={true} exact path="/admin/product/:id" component={UpdateProduct} />
       <Footer />
     </Router>
 

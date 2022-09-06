@@ -33,6 +33,7 @@ const ProductDetails = () => {
     const [quantity, setQuantity] = useState(1);
     //inc dec cart value  
     const decreaseQuantity = () => {
+        if (1 >= quantity) return;
         const qty = quantity - 1;
         setQuantity(qty);
     };
