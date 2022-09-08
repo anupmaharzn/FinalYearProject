@@ -8,6 +8,7 @@ import { Typography } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { Chart, CategoryScale, registerables } from "chart.js";
 import { Doughnut, Line } from 'react-chartjs-2';
+import { getAllOrders } from '../../redux/actions/orderAction';
 Chart.register(CategoryScale, ...registerables);
 
 
@@ -15,9 +16,11 @@ const Dashboard = () => {
     const dispatch = useDispatch();
 
     const { products } = useSelector((state) => state.products);
-
+    const { orders } = useSelector((state) => state.allOrders)
     useEffect(() => {
         dispatch(getAdminProduct());
+
+        dispatch(getAllOrders);
     }, [dispatch]);
 
     let outOfStock = 0;
@@ -71,7 +74,7 @@ const Dashboard = () => {
                             </Link>
                             <Link to="/admin/orders">
                                 <p>Orders</p>
-                                <p>4</p>
+                                <p>{orders && orders.length}</p>
                             </Link>
                             <Link to="/admin/users">
                                 <p>Users</p>
