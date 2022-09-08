@@ -112,11 +112,13 @@ exports.updateOrder = catchAsyncErrors(
             return next(new ErrorHandler(`you have already delivered this order`, 404));
 
         }
-        //jati pani orderitems xa yadi delivered xa orderstatus vani 
+        //jati pani orderitems xa yadi shipped xa orderStatus vani 
         //tyo sab ko stock update gardinxa 
-        order.orderItems.forEach(async (odr) => {
-            await updateStock(odr.product, odr.quantity);
-        });
+        if (req.body.status === "Shipped") {
+            order.orderItems.forEach(async (odr) => {
+                await updateStock(odr.product, odr.quantity);
+            });
+        }
 
         order.orderStatus = req.body.status;
 

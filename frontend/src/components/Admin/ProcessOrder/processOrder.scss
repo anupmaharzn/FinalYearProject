@@ -1,0 +1,31 @@
+.orderContainer {
+    width: 100%;
+    background-color: #fff;
+    box-sizing: border-box;
+    border-left: 1px solid rgba(0, 0, 0, 0.267);
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2rem;
+
+}
+
+.confirmOrderpage {
+    position: relative;
+    top: 0rem;
+    height: auto;
+}
+
+.createProductForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    padding: 2vmax;
+    justify-content: center;
+    height: 70%;
+    gap: 2rem;
+    transition: all 0.5s;
+    background-color: #fff;
+    transition: all 0.5s;
+    box-shadow: none;
+}
