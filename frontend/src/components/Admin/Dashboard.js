@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import { Chart, CategoryScale, registerables } from "chart.js";
 import { Doughnut, Line } from 'react-chartjs-2';
 import { getAllOrders } from '../../redux/actions/orderAction';
+import { getAllUsers } from "../../redux/actions/userAction"
 Chart.register(CategoryScale, ...registerables);
 
 
@@ -16,11 +17,14 @@ const Dashboard = () => {
     const dispatch = useDispatch();
 
     const { products } = useSelector((state) => state.products);
-    const { orders } = useSelector((state) => state.allOrders)
+    const { orders } = useSelector((state) => state.allOrders);
+    const { users } = useSelector((state) => state.allUsers);
     useEffect(() => {
         dispatch(getAdminProduct());
 
-        dispatch(getAllOrders);
+        dispatch(getAllOrders());
+
+        dispatch(getAllUsers());
     }, [dispatch]);
 
     let outOfStock = 0;
@@ -78,7 +82,7 @@ const Dashboard = () => {
                             </Link>
                             <Link to="/admin/users">
                                 <p>Users</p>
-                                <p>2</p>
+                                <p>{users && users.length}</p>
                             </Link>
                         </div>
                     </div>

@@ -33,6 +33,8 @@ import NewProduct from "./components/Admin/NewProduct/NewProduct";
 import UpdateProduct from './components/Admin/UpdateProduct/UpdateProduct';
 import OrderList from "./components/Admin/OrderList/OrderList";
 import ProcessOrder from "./components/Admin/ProcessOrder/ProcessOrder"
+import UserList from "./components/Admin/UserList/UserList";
+import UpdateUser from "./components/Admin/UpdateUser/UpdateUser";
 function App() {
 
   //given when we reload we dont lose logined user data
@@ -101,6 +103,8 @@ function App() {
       <ProtectedRoute isAdmin={true} exact path="/admin/product/:id" component={UpdateProduct} />
       <ProtectedRoute isAdmin={true} exact path="/admin/orders" component={OrderList} />
       <ProtectedRoute isAdmin={true} exact path="/admin/order/:id" component={ProcessOrder} />
+      <ProtectedRoute isAdmin={true} exact path="/admin/users" component={UserList} />
+      <ProtectedRoute isAdmin={true} exact path="/admin/user/:id" component={UpdateUser} />
       <Footer />
     </Router>
 

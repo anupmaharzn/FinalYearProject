@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { DataGrid } from '@material-ui/data-grid'
 import { useSelector, useDispatch } from "react-redux"
-import { clearErrors, getAdminProduct, deleteProduct } from '../../../redux/actions/productAction'
+import { clearErrors, getAllUsers, deleteUser } from '../../../redux/actions/userAction'
 import { Link } from 'react-router-dom'
 import { useAlert } from 'react-alert'
 import { Button } from "@material-ui/core"
@@ -9,17 +9,16 @@ import MetaData from '../../layout/Metadata'
 import EditIcon from '@material-ui/icons/Edit'
 import DeleteIcon from '@material-ui/icons/Delete'
 import SideBar from '../Sidebar/Sidebar'
-import "./productlist.scss"
-import * as productactionTypes from '../../../redux/constants/productactiontypes';
+import * as useractionTypes from '../../../redux/constants/userActionTypes';
 
-const ProductList = ({ history }) => {
+const UserList = ({ history }) => {
     const dispatch = useDispatch();
 
     const alert = useAlert();
 
-    const { error, products } = useSelector((state) => state.products);
+    const { error, users } = useSelector((state) => state.allUsers);
 
-    const { error: deleteError, isDeleted } = useSelector((state) => state.product);
+    const { error: deleteError, isDeleted, message } = useSelector((state) => state.profile);
 
     useEffect(() => {
         if (error) {
@@ -31,41 +30,43 @@ const ProductList = ({ history }) => {
             dispatch(clearErrors());
         }
         if (isDeleted) {
-            alert.success("Product Deleted Successfully");
-            history.push('/admin/products');
+            alert.success(message);
+            history.push('/admin/users');
             dispatch({
-                type: productactionTypes.DELETE_PRODUCT_RESET,
+                type: useractionTypes.DELETE_USER_RESET,
             })
         }
-        dispatch(getAdminProduct());
-    }, [dispatch, alert, error, history, deleteError, isDeleted]);
+        dispatch(getAllUsers());
+    }, [dispatch, alert, error, history, deleteError, message, isDeleted]);
 
-    const deleteProductHandler = (id) => {
-        dispatch(deleteProduct(id));
+    const deleteUserHandler = (id) => {
+        dispatch(deleteUser(id));
     };
     const columns = [
 
         {
             field: 'id',
-            headerName: "Product ID",
-            flex: 0.5
+            headerName: "User ID",
+            flex: 0.6
+        },
+        {
+            field: "email",
+            headerName: 'Email',
+            flex: 0.6,
         },
         {
             field: "name",
-            headerName: 'Name',
-            flex: 1,
-        },
-        {
-            field: "stock",
-            headerName: "Stock",
-            type: 'number',
-            flex: 0.3,
-        },
-        {
-            field: "price",
-            headerName: "Price",
-            type: 'number',
+            headerName: "Name",
             flex: 0.5,
+        },
+        {
+            field: "role",
+            headerName: "Role",
+            flex: 0.3,
+            cellClassName: (params) => {
+                return params.getValue(params.id, "role") === "admin" ?
+                    "greenColor" : "redColor";
+            }
         },
         {
             field: "actions",
@@ -76,10 +77,10 @@ const ProductList = ({ history }) => {
             renderCell: (params) => {
                 return (
                     <React.Fragment>
-                        <Link to={`/admin/product/${params.getValue(params.id, "id")}`} >
+                        <Link to={`/admin/user/${params.getValue(params.id, "id")}`} >
                             <EditIcon />
                         </Link>
-                        <Button onClick={() => deleteProductHandler(params.getValue(params.id, "id"))}>
+                        <Button onClick={() => deleteUserHandler(params.getValue(params.id, "id"))}>
                             <DeleteIcon />
                         </Button>
 
@@ -92,24 +93,25 @@ const ProductList = ({ history }) => {
 
     const rows = [];
 
-    products &&
-        products.forEach((item) => {
+    users &&
+        users.forEach((item) => {
             rows.push({
                 id: item._id,
+                email: item.email,
                 name: item.name,
-                stock: item.stock,
-                price: item.price,
+                role: item.role,
 
             })
         });
 
     return (
         <React.Fragment>
-            <MetaData title="ALL PRODUCTS -ADMIN" />
+            <MetaData title="ALL USERS -ADMIN" />
             <div className='dashboard'>
                 <SideBar />
+
                 <div className='productListContainer'>
-                    <h1 id="productListHeading">ALL PRODUCT LIST</h1>
+                    <h1 id="productListHeading">ALL USERS LIST</h1>
                     <DataGrid
                         rows={rows}
                         columns={columns}
@@ -124,4 +126,6 @@ const ProductList = ({ history }) => {
     )
 }
 
-export default ProductList
+
+
+export default UserList
