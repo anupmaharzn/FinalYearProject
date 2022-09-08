@@ -271,10 +271,19 @@ exports.deleteReviews = catchAsyncErrors(
         );
         //average rating
         let avg = 0;
+
         reviews.forEach(rev => {
             avg += rev.rating;
-        })
-        const ratings = avg / reviews.length;
+        });
+
+        let ratings = 0;
+
+        if (reviews.length === 0) {
+            ratings = 0;
+        }
+        else {
+            ratings = avg / reviews.length;
+        }
 
         const numOfReviews = reviews.length;
 

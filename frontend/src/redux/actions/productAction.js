@@ -173,6 +173,51 @@ export const deleteProduct = (id) => async (dispatch) => {
     }
 };
 
+//get all reviews of a product
+//id product ko
+export const getAllReview = (id) => async (dispatch) => {
+    try {
+        dispatch({
+            type: productactionTypes.ALL_REVIEW_REQUEST,
+        });
+
+        const { data } = await axios.get(`/api/v1/reviews?id=${id}`);
+
+        dispatch({
+            type: productactionTypes.ALL_REVIEW_SUCCESS,
+            payload: data.reviews,
+        });
+    } catch (error) {
+        dispatch({
+            type: productactionTypes.ALL_REVIEW_FAIL,
+            payload: error.response.data.message,
+        });
+    }
+};
+
+// delete review of product
+export const deleteReviews = (reviewId, productId) => async (dispatch) => {
+    try {
+        dispatch({
+            type: productactionTypes.DELETE_REVIEW_REQUEST,
+        });
+
+        const { data } = await axios.delete(`/api/v1/reviews?id=${reviewId}&productId=${productId}`);
+
+        dispatch({
+            type: productactionTypes.DELETE_REVIEW_SUCCESS,
+            payload: data.success,
+        });
+    } catch (error) {
+        dispatch({
+            type: productactionTypes.DELETE_REVIEW_FAIL,
+            payload: error.response.data.message,
+        });
+    }
+};
+
+
+
 
 //clearing errors
 export const clearErrors = () => async (dispatch) => {

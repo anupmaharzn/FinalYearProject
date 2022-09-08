@@ -54,11 +54,12 @@ const ProcessOrder = ({ match }) => {
             <MetaData title="Process Order" />
             <div className='dashboard'>
                 <SideBar />
-                <div className='orderContainer'>
+                <div className='processOrderContainer'>
                     {loading ? (<Loader />) : (
-                        <div className='confirmOrderpage container'
+                        <div className='processOrderPage container'
                             style={{
-                                display: order.orderStatus === "Delivered" ? "block" : "grid",
+                                display:
+                                    order.orderStatus === "Delivered" ? "block" : "grid",
                             }}
                         >
                             <div>
@@ -138,7 +139,7 @@ const ProcessOrder = ({ match }) => {
                                     order.orderStatus === "Delivered" ? "none" : "block",
                             }}>
 
-                                <form className='createProductForm' encType='multipart/form-data' onSubmit={updateOrderSubmitHandler}>
+                                <form className='processOrderForm' encType='multipart/form-data' onSubmit={updateOrderSubmitHandler}>
                                     <h1>Process Order</h1>
                                     <div>
                                         <AccountTreeIcon />

@@ -10,7 +10,7 @@ import VerifiedUserIcon from '@material-ui/icons/VerifiedUser'
 import SideBar from '../Sidebar/Sidebar'
 import * as useractionTypes from '../../../redux/constants/userActionTypes'
 import Loader from '../../layout/Loader/loader'
-
+import './updateuser.scss'
 
 const UpdateUser = ({ history, match }) => {
 
@@ -73,10 +73,10 @@ const UpdateUser = ({ history, match }) => {
             <div className='dashboard'>
                 <SideBar />
                 <div className='newProductContainer'>
-                    <h1 className="createProductHeading">Update User</h1>
-                    {loading ? (<Loader />) : (
-                        <form className='createProductForm' onSubmit={updateUserSubmitHandler}>
 
+                    {loading ? (<Loader />) : (
+                        <form className='updateuserform' onSubmit={updateUserSubmitHandler}>
+                            <h1 className="updateUserHeading">Update User</h1>
                             <div>
                                 <PersonIcon />
                                 <input

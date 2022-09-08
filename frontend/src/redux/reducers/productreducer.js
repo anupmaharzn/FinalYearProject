@@ -192,5 +192,68 @@ export const productReducer = (state = {}, action) => {
     }
 };
 
+export const productReivewReducer = (state = { reviews: [] }, action) => {
 
+    switch (action.type) {
+        case productactionTypes.ALL_REVIEW_REQUEST:
+            return {
+                ...state,
+                loading: true,
+            };
+        case productactionTypes.ALL_REVIEW_SUCCESS:
+            return {
+                loading: false,
+                reviews: action.payload,
+            };
+
+        case productactionTypes.ALL_REVIEW_FAIL:
+            return {
+                ...state,
+                loading: false,
+                error: action.payload,
+            };
+        case productactionTypes.CLEAR_ERRORS:
+            return {
+                ...state,
+                error: null
+            }
+        default:
+            return state;
+    }
+};
+
+export const reviewReducer = (state = {}, action) => {
+
+    switch (action.type) {
+        case productactionTypes.DELETE_REVIEW_REQUEST:
+            return {
+                ...state,
+                loading: true,
+
+            };
+        case productactionTypes.DELETE_REVIEW_SUCCESS:
+            return {
+                loading: false,
+                isDeleted: action.payload,
+            };
+        case productactionTypes.DELETE_REVIEW_FAIL:
+            return {
+                ...state,
+                loading: false,
+                error: action.payload,
+            };
+        case productactionTypes.DELETE_REVIEW_RESET:
+            return {
+                ...state,
+                isDeleted: false,
+            };
+        case productactionTypes.CLEAR_ERRORS:
+            return {
+                ...state,
+                error: null
+            }
+        default:
+            return state;
+    }
+};
 
