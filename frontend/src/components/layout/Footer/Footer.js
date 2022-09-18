@@ -29,7 +29,6 @@ const Footer = () => {
                     <ul className='footer__links'>
                         <li><a href='#' className='footer__link'>Help Center</a></li>
                         <li><a href='#' className='footer__link'>How to Buy</a></li>
-                        <li><a href='#' className='footer__link'>How to Bid</a></li>
                         <li><a href='#' className='footer__link'>Return &amp; refund</a></li>
                     </ul>
                 </div>
