@@ -138,7 +138,7 @@ const NewProduct = ({ history }) => {
                             <select onChange={(e) => setCategory(e.target.value)}>
                                 <option value="">Choose Category</option>
                                 {categories.map((cateory) => (
-                                    <option key={cateory} value={cateory}>
+                                    <option key={cateory} value={cateory.toLowerCase()}>
                                         {cateory}
                                     </option>
                                 ))}

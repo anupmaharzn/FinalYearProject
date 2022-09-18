@@ -3,7 +3,7 @@ import axios from 'axios';
 import * as productactionTypes from '../constants/productactiontypes';
 
 //get all products
-export const getProduct = (keyword = "", currentPage, price = [0, 25000], category, ratings = 0) => async (dispatch) => {
+export const getProduct = (keyword = "", currentPage, price = [0, 250000], category, ratings = 0) => async (dispatch) => {
 
     try {
         dispatch({

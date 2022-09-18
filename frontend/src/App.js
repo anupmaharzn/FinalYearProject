@@ -36,6 +36,8 @@ import ProcessOrder from "./components/Admin/ProcessOrder/ProcessOrder"
 import UserList from "./components/Admin/UserList/UserList";
 import UpdateUser from "./components/Admin/UpdateUser/UpdateUser";
 import ProductReviews from "./components/Admin/ProductReviews/ProductReviews";
+
+
 function App() {
 
   //given when we reload we dont lose logined user data
@@ -70,6 +72,8 @@ function App() {
       <Route exact path="/product/:id" component={ProductDetails} />
       <Route exact path="/products" component={Products} />
       <Route path="/products/:keyword" component={Products} />
+
+
 
       <ProtectedRoute exact path="/account" component={Profile} />
       <ProtectedRoute exact path="/me/update" component={UpdateProfile} />
@@ -107,6 +111,10 @@ function App() {
       <ProtectedRoute isAdmin={true} exact path="/admin/users" component={UserList} />
       <ProtectedRoute isAdmin={true} exact path="/admin/user/:id" component={UpdateUser} />
       <ProtectedRoute isAdmin={true} exact path="/admin/reviews" component={ProductReviews} />
+
+
+
+
       <Footer />
     </Router>
 

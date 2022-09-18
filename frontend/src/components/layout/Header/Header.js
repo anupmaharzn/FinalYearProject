@@ -15,7 +15,6 @@ const Header = () => {
     const { isAuthenticated, user } = useSelector((state) => state.user);
     const { cartItems } = useSelector((state) => state.cart);
     const [Header, setHeader] = useState(false);
-
     const handleHeader = () => {
         if (window.scrollY >= 80) {
             setHeader(true);
@@ -59,8 +58,6 @@ const Header = () => {
 
             </nav>
         </header>
-
-
 
     )
 
