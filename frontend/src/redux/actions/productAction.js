@@ -229,10 +229,10 @@ export const getRecommendedProduct = (name) => async (dispatch) => {
                 "Content-Type": "application/json",
             },
         };
-        const { data } = await axios.post(`/recommend`, name, config);
+        const { data } = await axios.post(``, name, config);
         dispatch({
             type: productactionTypes.ALL_RECOMMEND_PRODUCT_REQUEST,
-            payload: data.id,
+            payload: data,
         })
 
     } catch (error) {
