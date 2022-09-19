@@ -257,3 +257,36 @@ export const reviewReducer = (state = {}, action) => {
     }
 };
 
+//recommend product reducer
+
+export const productsRecommenderReducer = (state = { recommendProducts: [] }, action) => {
+
+    switch (action.type) {
+        case productactionTypes.ALL_RECOMMEND_PRODUCT_REQUEST:
+            return {
+                loading: true,
+                recommendProducts: []
+            }
+        case productactionTypes.ALL_RECOMMEND_PRODUCT_SUCCESS:
+            return {
+                loading: false,
+                recommendProducts: action.payload,
+
+            }
+
+        case productactionTypes.ALL_RECOMMEND_PRODUCT_FAIL:
+            return {
+                loading: false,
+                error: action.payload,
+            }
+        case productactionTypes.CLEAR_ERRORS:
+            return {
+                ...state,
+                error: null,
+            }
+        default:
+            return state;
+    }
+
+};
+

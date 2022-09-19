@@ -198,32 +198,3 @@
   color: #2b3445;
   font-family: "roboto", sans-serif;
 }
-
-
-.recommendedsection {
-  &__title {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 0.5rem;
-
-    &__text {
-      color: var(--title-color);
-      font-weight: var(--font-bold);
-      font-size: 25px;
-    }
-  }
-
-  &__container {
-    width: 75%;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    justify-content: space-around;
-    align-items: center;
-    gap: 1.85rem;
-    padding: 2rem;
-    margin-left: 8rem;
-    margin-right: 5rem;
-
-  }
-}

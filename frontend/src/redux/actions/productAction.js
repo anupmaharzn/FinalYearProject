@@ -216,6 +216,33 @@ export const deleteReviews = (reviewId, productId) => async (dispatch) => {
     }
 };
 
+//get recommend product id
+
+export const getRecommendedProduct = (name) => async (dispatch) => {
+
+    try {
+        dispatch({
+            type: productactionTypes.ALL_RECOMMEND_PRODUCT_REQUEST,
+        })
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+            },
+        };
+        const { data } = await axios.post(`/recommend`, name, config);
+        dispatch({
+            type: productactionTypes.ALL_RECOMMEND_PRODUCT_REQUEST,
+            payload: data.id,
+        })
+
+    } catch (error) {
+        dispatch({
+            type: productactionTypes.ALL_RECOMMEND_PRODUCT_FAIL,
+            payload: error.response.data.message,
+        })
+    }
+}
+
 
 
 

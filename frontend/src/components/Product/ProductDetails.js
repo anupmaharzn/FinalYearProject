@@ -13,6 +13,7 @@ import MetaData from '../layout/Metadata';
 import { addItemsToCart } from '../../redux/actions/cartAction';
 import { Rating } from '@material-ui/lab'
 import * as productactionTypes from '../../redux/constants/productactiontypes';
+import RecommendProduct from './recommendProduct/recommendProduct';
 import {
     Dialog,
     DialogActions,
@@ -21,65 +22,7 @@ import {
     Button
 } from '@material-ui/core';
 
-import ProductCard from '../Home/productcard/ProductCard';
-
 const ProductDetails = () => {
-
-    //this data from recommended system
-    const RecommendedProduct = [
-        {
-            _id: "6326fbe3d014708d2c0407bc",
-            name: "lenovo",
-            description: "best gaming laptop",
-            price: 100000,
-            ratings: 5,
-            category: "laptop",
-            stock: 9,
-            numOfReviews: 1,
-            images: [
-                {
-                    url: "sample image"
-                }
-            ],
-            reviews: []
-
-        },
-        {
-            _id: "6326fbe3d014708d2c0407bc",
-            name: "lenovo",
-            description: "best gaming laptop",
-            price: 100000,
-            ratings: 5,
-            category: "laptop",
-            stock: 9,
-            numOfReviews: 1,
-            images: [
-                {
-                    url: "sample image"
-                }
-            ],
-            reviews: []
-
-        },
-        {
-            _id: "6326fbe3d014708d2c0407bc",
-            name: "lenovo",
-            description: "best gaming laptop",
-            price: 100000,
-            ratings: 5,
-            category: "laptop",
-            stock: 9,
-            numOfReviews: 1,
-            images: [
-                {
-                    url: "sample image"
-                }
-            ],
-            reviews: []
-
-        },
-
-    ];
 
 
 
@@ -262,16 +205,9 @@ const ProductDetails = () => {
                         </Tabs>
                     </div>
 
-                    <div className='recommendedsection container'>
-                        <div className='recommendedsection__title'>
-                            <h1 className='recommendedsection__title__text'>Recommended Products</h1>
-                        </div>
-                        <div className="recommendedsection__container">
-                            {RecommendedProduct && RecommendedProduct.map((product, index) =>
-                                <ProductCard key={index} product={product} />
-                            )}
-                        </div>
-                    </div>
+                    {product && product ? <RecommendProduct productName={product.name} /> : "Loading"}
+
+
                 </React.Fragment>
             )
             }
